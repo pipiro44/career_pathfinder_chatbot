@@ -14,8 +14,9 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 
 # Load environment variables
-load_dotenv(r"C:\Users\Prospero!\Desktop\career chatbot\Chatbot\.env")
-HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACE_API_KEY")
+load_dotenv(".env")
+# Replace the dotenv loading with:
+HUGGINGFACEHUB_API_TOKEN = st.secrets.get("HUGGINGFACE_API_KEY") or os.getenv("HUGGINGFACE_API_KEY")
 
 # Configuration
 MODEL_NAME = "microsoft/DialoGPT-medium"
@@ -108,7 +109,7 @@ def initialize_session_state():
 @st.cache_resource
 def load_model():
     try:
-        with open(r"C:\Users\Prospero!\Desktop\career chatbot\Chatbot\best_model.pkl", 'rb') as f:
+        with open("best_model.pkl", 'rb') as f:
             model_data = pickle.load(f)
         return model_data
     except FileNotFoundError:
