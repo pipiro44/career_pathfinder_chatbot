@@ -6,5 +6,5 @@ scikit-learn
 langchain-huggingface
 langchain-core
 langchain-community
-pickle5
+
 transformers
